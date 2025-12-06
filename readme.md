@@ -1,7 +1,7 @@
 # 🏆 Multilingual Medical RAG Agent  
 ### *Bridging Language Gaps in Healthcare Data with LangGraph*
 
-Millions of people—especially in multilingual regions like India—struggle to understand their own medical records. These documents are often unstructured (images, scans, handwritten notes), and user queries frequently come in **Hindi**, **Hinglish**, or other native languages that standard enterprise RAG systems fail to handle.
+Millions of people especially in multilingual regions like India struggle to understand their own medical records. These documents are often unstructured (images, scans, handwritten notes), and user queries frequently come in **Hindi**, **Hinglish**, or other native languages that standard enterprise RAG systems fail to handle.
 
 This project demonstrates a **stateful, multilingual, self-correcting RAG agent** built entirely on **FOSS tools**, powered by **LangGraph**.
 
@@ -34,8 +34,6 @@ We built a **7-node LangGraph agent** with multilingual translation, document gr
 
 Refiner → Retriever → Grader → (repeat if needed) → Synthesizer
 
-yaml
-Copy code
 
 If retrieved documents are low-quality, the **Grader node** triggers automatic refinement until relevance improves.
 
@@ -59,24 +57,16 @@ Runs completely locally → zero licensing cost.
 ## 🧠 LangGraph Execution Flow
 
 User Input
-↓
-Input Manager
-↓
-Translator (if needed)
-↓
-Router
-↓
-┌──────────────────────────────┐
-│ Refiner → Retriever → Grader │
-│ (RAG Loop repeats as needed) │
-└──────────────────────────────┘
-↓
-Synthesizer
-↓
-Final Answer (translated if needed)
+→ Input Manager
+→ Translator (if needed)
+→ Router
+→ Refiner
+→ Retriever
+→ Grader (repeat Refiner→Retriever→Grader if needed)
+→ Synthesizer
+→ Final Answer (translated if needed)
 
-yaml
-Copy code
+
 
 ---
 
@@ -119,12 +109,14 @@ Lightweight FOSS models may produce imperfect:
 git clone [YOUR-REPO-URL]
 cd [PROJECT-FOLDER]
 pip install -r requirements.txt
+```
 3. Populate the Knowledge Base
 Runs mock OCR + embedding pipeline and fills ChromaDB.
 
-bash
-Copy code
-python data_ingestion.py
+```bash
+
+python run data_ingestion.py
+```
 To add more mock prescription files:
 
 Drop files like new_record.pdf or rx1.jpg into the ingestion folder
@@ -132,9 +124,10 @@ Drop files like new_record.pdf or rx1.jpg into the ingestion folder
 Pipeline processes them (mock OCR → embeddings)
 
 4. Launch the App
-bash
-Copy code
+```bash
+
 streamlit run streamlit_app.py
+```
 🧪 How to Use the Demo
 1. Upload a Document
 Sidebar → Upload Document
