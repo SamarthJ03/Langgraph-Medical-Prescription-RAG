@@ -115,7 +115,7 @@ Runs mock OCR + embedding pipeline and fills ChromaDB.
 
 ```bash
 
-python run data_ingestion.py
+python run_ingestion.py
 ```
 To add more mock prescription files:
 
